@@ -27,26 +27,26 @@ def get_pets_by_breed(pet_shop, breed):
             searched_breeds.append(item)
     return searched_breeds
 
-def find_pet_by_name(pet_shop, pet_name):
-    pet_shop_index = None
-    for index, dog_name in enumerate(pet_shop["pets"]):
-        if dog_name["name"] == pet_name:
-            pet_shop_index = pet_shop["pets"][index]
-        # else:
-            # print("not found" + dog_name["name"])
-    return pet_shop_index
+
+
+def find_pet_by_name(pet_shop_name, pet_name):
+
+    for index, dog in enumerate(pet_shop_name["pets"]):
+        if pet_name == dog["name"]:
+            return pet_shop_name["pets"][index]
+
+    return None
         
 
-# def remove_pet_by_name(pet_shop_name, dog_name):
-#     for dog in pet_shop_name["pets"]:
-#         if  dog["name"] == dog_name:
-#             del(dog["name"])
-#             print("delete completed")
-        
+def remove_pet_by_name(pet_shop_name, dog_name):
+    print(dog_name)
+    for index, dog in enumerate(pet_shop_name["pets"]):
+        if  dog["name"] == dog_name:
+            del(pet_shop_name["pets"][index])
 
+        
 def add_pet_to_stock(pet_shop_name, new_dog_dict):
     pet_shop_name["pets"].append(new_dog_dict)
-
 
 def get_customer_cash(customer_info_dict):
     return customer_info_dict["cash"]
@@ -68,9 +68,10 @@ def customer_can_afford_pet(customer_list, new_pet_dict):
 
 def  sell_pet_to_customer(pet_shop_list, pet_name, customer):
 
-    if pet_name
-     
-    if customer_can_afford_pet:
+    if pet_name == None:
+        return
+
+    if customer_can_afford_pet(customer, pet_name):
         pet_shop_list["pets"].remove(pet_name)
         customer["pets"].append(pet_name)
         pet_shop_list["admin"]["pets_sold"] += 1
